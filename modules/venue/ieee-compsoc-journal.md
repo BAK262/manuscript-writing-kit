@@ -1,6 +1,6 @@
 # Venue profile: IEEE Computer Society journal (compsoc)
 
-Notes distilled for IEEEtran **Computer Society** journal mode (e.g. IEEE Transactions on Affective Computing). Confirm against the current IEEE author kit before submission.
+Notes distilled for IEEEtran **Computer Society** journal mode (`compsoc`). Confirm against the current IEEE author kit for the target transactions journal before submission.
 
 ## Document class
 
