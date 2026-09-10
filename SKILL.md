@@ -7,19 +7,21 @@ description: >-
   after a draft, auditing terminology/claims, polishing sections, resolving cite
   placeholders, or verifying literature tables. Triggers on manuscript-writing-kit,
   writing contract, 写作契约, section polish, citation workflow, dataset table verify.
-version: 1.1.0
+version: 1.1.1
 disable-model-invocation: true
 ---
 
 # Manuscript Writing Kit
 
-**v1.1.0** — LaTeX + BibTeX manuscripts in Cursor. **One entry; load modules by intent.**
+**v1.1.1** — LaTeX + BibTeX manuscripts. **One entry; load modules by intent.**
 
-`disable-model-invocation: true` → user **must** attach `/manuscript-writing-kit`. Do not improvise from memory. **Read the listed module paths** for the current intent before editing.
+Load this pack in the agent session (attach / `/manuscript-writing-kit` / host-equivalent). Do not improvise from memory. **Read the listed module paths** for the current intent before editing.
+
+Human guides: [README.md](README.md) · [README.zh-CN.md](README.zh-CN.md) · [README.en.md](README.en.md)
 
 ## Steady-state daily ritual
 
-1. Confirm skill is attached.
+1. Confirm this pack is loaded in the session.
 2. Read frozen abstract (if frozen) + project `WRITING_CONTRACT` (if present).
 3. Detect intent → load modules in the table below (full file for active pass).
 4. Reply with one line: modules loaded + mode (A/B/C) + confirm-gate status.

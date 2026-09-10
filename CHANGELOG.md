@@ -1,8 +1,13 @@
 # CHANGELOG
 
+## 1.1.1
+
+- Human README hub with Chinese and English guides; fork-first install; IDE (VS Code / Cursor) + agent-host portable wording.
+- Environment module aligned with multi-host agents.
+
 ## 1.1.0
 
-- README Monday-morning path, modes cheat sheet, glossary, bad→better prompts.
+- Human onboarding path, modes cheat sheet, glossary, request examples.
 - Bootstrap hard gate: no final §1–§4 until abstract frozen.
 - Mode B confirm gate required in polish + collaboration + templates.
 - Citation R2 parallelism tiers: full / batched / inline (no abort without Task).
