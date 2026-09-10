@@ -1,8 +1,13 @@
 # CHANGELOG
 
+## 1.1.2
+
+- README pair: `README.md` (English) + `README_zh.md` (Chinese) with language badges; clone-only install.
+- Trim install/meta wording in guides; align environment and venue notes.
+
 ## 1.1.1
 
-- Human README hub with Chinese and English guides; fork-first install; IDE (VS Code / Cursor) + agent-host portable wording.
+- Bilingual human guides and clone/fork install notes (superseded by 1.1.2 layout).
 - Environment module aligned with multi-host agents.
 
 ## 1.1.0

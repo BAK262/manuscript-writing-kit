@@ -1,13 +1,13 @@
 # Request templates
 
-Attach `/manuscript-writing-kit` and `@` your main `.tex`. Fill brackets.
+Load `/manuscript-writing-kit` (or host equivalent) and point at the main `.tex`. Fill brackets.
 
-## Bad → better
+## Example: preferred vs vague
 
 ```text
-Bad:    把这一节改好看一点（结构和用词一起随便改）。
-Better: Mode B on @[main.tex] [SECTION]. Style anchor: abstract + Introduction.
-        First list structural edits; wait for my OK. (Then a second message: Mode A.)
+Vague:     Polish this section (structure and wording together).
+Preferred: Mode B on @[main.tex] [SECTION]. Style anchor: abstract + Introduction.
+           List structural edits first; apply after confirmation.
 ```
 
 ## Mode A — paragraph polish

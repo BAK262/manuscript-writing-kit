@@ -40,6 +40,6 @@ Configure when running [citation.md](citation.md) with the Zotero pool. See [zot
 
 ## Skill pack location
 
-- This repository (or your fork) registered with your agent host.
-- For hosts that use a personal skills directory (e.g. `~/.cursor/skills/manuscript-writing-kit/`), see the human [README](../README.md).
-- Per-paper contract instance lives **in the project**, not only in the kit.
+- This repository (or a local clone) registered with the agent host.
+- For hosts that use a personal skills directory (e.g. `~/.cursor/skills/manuscript-writing-kit/`), see [README.md](../README.md).
+- Per-paper contract instance lives in the project.
