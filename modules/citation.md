@@ -1,10 +1,8 @@
 # Manuscript citation workflow
 
-Section-scoped LaTeX + BibTeX citation: per-sentence decisions, triple-pool retrieval, subagent evidence packs, placeholder briefs, compliance audit.
+Section-scoped LaTeX + BibTeX: per-sentence decisions, triple-pool retrieval, evidence packs, placeholder briefs, audit.
 
-**Related:** [zotero.md](zotero.md) · Contract §4 · Kit [../SKILL.md](../SKILL.md)
-
-Discover venue and file names from the repo and the user’s scope message.
+**Related:** [zotero.md](zotero.md) · Contract §4 · [../SKILL.md](../SKILL.md)
 
 ## Workflow overview
 
@@ -18,98 +16,73 @@ flowchart LR
 
 | Phase | Owner | Purpose |
 |-------|--------|---------|
-| **1 — Scope** | Parent | Policy, worklist, parallel mode, Zotero status |
-| **2 — Evidence** | Subagents (required) | Per-sentence records + triple-pool when triggered |
-| **3 — Integrate** | Parent | Merge `.bib`, update `.tex`, placeholder outcomes |
-| **4 — Audit** | Parent | Ledger completeness, claim–abstract fit |
+| **1 — Scope** | Parent | Policy, worklist, parallelism tier, Zotero status |
+| **2 — Evidence** | Prefer subagents | Per-sentence records + triple-pool when triggered |
+| **3 — Integrate** | Parent | Merge `.bib`, update `.tex` |
+| **4 — Audit** | Parent | Ledger + claim–abstract fit |
 
-**Hard rules:**
+## Hard rules
 
 | # | Requirement |
 |---|-------------|
-| R1 | Every sentence in scope → ledger row and decision **A / B / C / D / E**. |
-| R2 | Phase 2 uses **subagents** — one per sentence (≤30 in scope) or one per paragraph (>30). Inline-only if user requests a **single-sentence dry run**. |
-| R3 | **Triple-pool** (`.bib` + Zotero MCP + network) in parallel for cite briefs or external support (A validate, B replace, open placeholder). Zotero down → `.bib` + network; state in report. |
-| R4 | **C (no cite)** without a cite brief may skip triple-pool after a one-line claim-only rationale. |
-| R5 | Claim-first — each `\cite{}` supports that sentence’s claim. |
-| R6 | **Cite brief supremacy** — honor author briefs (counts, mandatory works, fallbacks, conditional no-cite). |
-| R7 | Open placeholders stay in `.tex` until the brief is fully satisfied; provisional `\cite{}` may follow the marker. |
+| R1 | Every sentence → ledger row + decision **A–E**. |
+| R2 | Phase 2 parallelism — see **tiers** below. Prefer subagents when available; **always finish** with a documented tier. |
+| R3 | Triple-pool (`.bib` + Zotero + network) when cite brief or external support needed. Zotero down → `.bib` + network; state in report. |
+| R4 | **C** without brief may skip triple-pool with one-line rationale. |
+| R5 | Claim-first cites. |
+| R6 | Cite brief supremacy. |
+| R7 | Open placeholders stay until brief satisfied; provisional `\cite{}` may follow marker. |
 
-## Inputs (discover per run)
+### R2 parallelism tiers
 
-| Input | How to obtain |
-|-------|----------------|
-| Manuscript `.tex` | User scope or contract §0 |
-| Master `.bib` | Beside `.tex`; confirm from `\bibliography{}` / `\addbibresource{}` |
-| Citation policy | Contract §4, `.tex` header, `AGENTS.md`, or user message |
-| Temp workspace | e.g. `manuscript/.citation-workflow/<range-id>/` |
+| Tier | When | Behavior |
+|------|------|----------|
+| **full** | Default when Task/subagents work; ≤30 sentences → one agent/sentence; >30 → one agent/paragraph | Max parallelism |
+| **batched** | Large scope or cost control | Groups of ~8 sentences per subagent (still one ledger row per sentence) |
+| **inline** | No subagent/Task tool; user asks dry-run; or full failed | Parent runs Phase 2 sequentially; report `tier: inline` |
+
+User may set tier in the request or contract §0 (`Citation parallelism`). Unspecified → try **full**, else **inline** (do not abort the pass).
+
+## Inputs
+
+Manuscript `.tex` · master `.bib` · citation policy · temp e.g. `manuscript/.citation-workflow/<range-id>/`
 
 ## Author cite briefs
 
-**Cite brief** markers:
+Markers: `【cite: …】` / `【cite：…】`. Other `【待*】` markers are not cite briefs unless they embed `cite`.
 
-- `【cite: …】` or `【cite：…】`
-
-Other markers (`【待扩写】`, `【待补充】`, …) are content placeholders unless they embed a `cite` directive.
-
-**Brief clause types:** topic/scope; count + genre; mandatory source; exclusion; conditional no-cite; fallback; prose tweak allowed.
+Brief clauses: topic; count+genre; mandatory source; exclusion; conditional; fallback; prose tweak allowed.
 
 | Status | `.tex` |
 |--------|--------|
-| **Closed** | Remove marker; final `\cite{...}` (or no cite per brief) |
-| **Open — unmet** | Keep marker |
-| **Open — partial** | Keep marker; optional provisional `\cite{...}` after |
-| **Open — fallback** | Keep marker; `\cite{fallbackKey}` after |
+| Closed | Remove marker; final cite or no-cite per brief |
+| Open unmet / partial / fallback | Keep marker; provisional cite rules as before |
 
-## Phase 1 — Scope (parent)
+## Phase 1 — Scope
 
-1. Read citation policy.
-2. Confirm Zotero MCP ([zotero.md](zotero.md)).
-3. Fix exact range.
-4. Build sentence worklist (every sentence; split on `.` `?` `!`).
-5. Tag: `placeholder-governed` vs `default`; note existing `\cite{}`.
-6. Parallel mode: ≤30 → subagent/sentence; >30 → subagent/paragraph (still one record per sentence).
+Policy · Zotero status · exact range · sentence worklist · tag placeholder vs default · choose **tier** · record sentence count.
 
-## Phase 2 — Evidence (subagents)
+## Phase 2 — Evidence
 
-Triple-pool when: cite brief present; or default needing A/B / TBD cite. Skip for default **C** with rationale.
+Triple-pool when brief or A/B/TBD. Pools equal weight; reconcile union → dedupe → rank inside brief. Write only under temp; parent merges.
 
-Pools (equal weight, parallel): **`.bib`** · **Zotero** · **Network** (Crossref, PubMed, arXiv, publisher pages). Reconcile: union → dedupe → rank inside brief bounds.
+## Decisions A–E
 
-Subagents: write only under temp workspace; return sentence record + optional BibTeX snippets. Parent merges ledger and keys.
+**A** keep · **B** replace · **C** no cite · **D** placeholder closed · **E** placeholder open
 
-## Decisions A/B/C/D/E
+## Phase 3–4
 
-| Code | When |
-|------|------|
-| **A** | Keep/affirm current `\cite{}` |
-| **B** | Replace weak/indirect cite |
-| **C** | No external cite needed |
-| **D** | Placeholder **closed** |
-| **E** | Placeholder **open** |
-
-## Phase 3 — Integrate (parent)
-
-Merge BibTeX into master `.bib`; update `.tex` per closed/open/A/B/C; prose only for claim accuracy or brief-allowed micro-edits.
-
-## Phase 4 — Audit (parent)
-
-Coverage, claim↔abstract fit, brief compliance, keys, policy fields (e.g. `abstract` on entries). No new search.
-
-## Ledger fields (report)
-
-`id`, `location`, `snippet`, `tag`, `decision`, `pools`, `keys`, `brief_status`, `rationale`. Plus placeholder ledger when briefs exist.
+Integrate · audit (no new search). Ledger fields: `id, location, snippet, tag, decision, pools, keys, brief_status, rationale` (+ `tier`).
 
 ## Completion report
 
-1. Scope · 2. Sentence ledger · 3. Placeholder ledger · 4. Changes · 5. Evidence · 6. Risks
+Scope (incl. tier) · sentence ledger · placeholder ledger · changes · evidence · risks
 
 ## Quality checklist
 
-- [ ] Every in-scope sentence in ledger with A–E
-- [ ] Subagents at correct granularity (R2)
-- [ ] Triple-pool documented when triggered (R3)
-- [ ] Briefs closed or open with subtype
-- [ ] Open briefs still in `.tex` (R7)
-- [ ] Claim-specific cites (R5)
-- [ ] Policy fields satisfied
+- [ ] Every sentence in ledger with A–E  
+- [ ] Tier documented (R2); subagents used when tier is full/batched and available  
+- [ ] Triple-pool when triggered (R3)  
+- [ ] Briefs closed or open with subtype  
+- [ ] Open briefs still in `.tex` (R7)  
+- [ ] Claim-specific cites (R5)  

@@ -1,63 +1,48 @@
 # Manuscript polish
 
-Process + scholarly prose targets. **Content rules** live in the project writing contract and frozen abstract.
+Process + scholarly prose targets. **Content rules** = project writing contract + frozen abstract.
 
-**Kit:** [../SKILL.md](../SKILL.md) · Contract: [contract/SKILL.md](contract/SKILL.md) · Collaboration: [collaboration.md](collaboration.md)
+**Kit:** [../SKILL.md](../SKILL.md) · [contract/module.md](contract/module.md) · [collaboration.md](collaboration.md)
 
 ## Division of labor
 
 | Concern | Owner |
 |---------|--------|
-| Story, terms, facts, cite policy | Project `WRITING_CONTRACT` + [contract/SKILL.md](contract/SKILL.md) |
-| Narrative authority | Frozen `\begin{abstract}...\end{abstract}` in main `.tex` (path from contract §0 / user scope) |
-| Modes, scope lock, style anchor, prose targets | **This module** |
-| Per-sentence cites / BibTeX | [citation.md](citation.md) |
-| Resource comparison tables | [table-verify.md](table-verify.md) |
+| Story, terms, facts, cite policy | Project `WRITING_CONTRACT` + contract module |
+| Narrative authority | Frozen abstract in main `.tex` |
+| Modes, scope lock, style anchor, prose | **This module** |
+| Cites / tables | [citation.md](citation.md) / [table-verify.md](table-verify.md) |
 
-Every run: read frozen abstract + project contract (and kit contract principles). Conflict → abstract, then contract.
-
-## When to use
-
-- Edit the main manuscript or companion tables/appendix for the same paper.
-- Tighten prose to contract + venue register.
-- Section- or range-level refine; structural change only in Mode B/C.
+Every run: read frozen abstract + project contract. Conflict → abstract, then contract.
 
 ## Operating modes
 
 Unspecified → **Mode A**.
 
-| Mode | Allowed |
-|------|---------|
-| **A — language-only** | Wording, grammar, rhythm, connectors, term consistency per contract, register, local redundancy cuts |
-| **B — structure-safe** | Mode A + local paragraph merge/split; sentence reorder for coherence (confirm gate recommended) |
-| **C — rewrite-with-guardrails** | Larger rewrite for clarity/compliance; scientific meaning changes need user request; report major rewrites |
+| Mode | Allowed | Confirm gate |
+|------|---------|--------------|
+| **A — language-only** | Wording, grammar, rhythm, connectors, term consistency, register, local redundancy | Not required |
+| **B — structure-safe** | Mode A + local paragraph merge/split; sentence reorder for coherence | **Required:** list proposed edits → wait for user OK → then apply |
+| **C — rewrite-with-guardrails** | Larger rewrite for clarity/compliance | Meaning changes need user request; report major rewrites; confirm before applying |
 
 Mode A keeps claim polarity/strength, section order, paragraph roles, and claim–citation binding (rebind only on factual mismatch).
 
 ## Scope lock
 
-- Keep section/subsection order and each paragraph’s narrative role (unless Mode B/C + user OK).
-- Leave `【待补充】` / `【待扩写】` unless the user asks to fill.
+- Keep section/subsection order and paragraph roles unless Mode B/C **after** confirmation.
+- Leave `【待补充】` / `【待扩写】` unless user asks to fill.
 - Prose vs contract → **contract wins**; flag trade-offs.
 
 ## Source hierarchy
 
-1. Frozen abstract in main `.tex`
-2. Project writing contract
-3. User **style anchor** (default: finalized Introduction + settled preceding sections)
-4. Target draft
+1. Frozen abstract  
+2. Project writing contract  
+3. Style anchor (default: Introduction + settled preceding sections)  
+4. Target draft  
 
 ## Prose targets
 
-Match the style anchor: scholarly venue-neutral diction, evidence-forward cadence.
-
-- **Formal register:** precise quantifiers and method nouns; skip fillers, vague hype, idioms, rhetorical questions, chatty asides. Mirror anchor *we* / impersonal balance.
-- **Concision:** one idea per sentence; cut pleonasm and synonym stacks; skip restating claims already licensed by backward reference.
-- **Academic cadence:** declarative; hedge where contract/anchor require; vary openings; standard section moves; lean verbs over stacked nominalizations.
-- **Controlled repetition:** for precision or licensed backward ref only.
-- **Logical connectors:** only where the argument needs them.
-- **Spelling / LaTeX / punctuation:** fix and list in the reply.
-- **Ambiguity:** rewrite dual readings; if intent unclear, propose two candidates.
+Scholarly venue-neutral diction; evidence-forward cadence; formal register; concision; lean verbs; controlled repetition; connectors only when needed; fix spelling/LaTeX/punctuation and list them; resolve dual readings or propose two candidates.
 
 ## Citation touch during polish
 
@@ -66,13 +51,13 @@ Match the style anchor: scholarly venue-neutral diction, evidence-forward cadenc
 
 ## Claim alignment
 
-Empirical and baseline prose must match contract §1/§3 and any analysis workflows the manuscript cites (discover names from the project, e.g. validation entry points). Treat documented baselines as **reuse entry points** unless the contract headlines a full benchmark study.
+Empirical and baseline prose must match contract §1/§3. Discover analysis or result names **from the project contract and manuscript**—do not assume a fixed workflow basename. Treat documented baselines as reuse entry points unless the contract headlines a full benchmark study.
 
 ## Execution checklist
 
-1. Resolve main `.tex` + contract paths; read abstract + contract.
-2. Confirm mode (default A) + style anchor.
-3. Audit target vs contract (terminology, claims, facts, body omits repo paths).
-4. Prose pass per targets.
-5. Edit within mode + scope lock.
+1. Resolve paths; read abstract + contract.  
+2. Confirm mode (default A) + style anchor.  
+3. If Mode B or C: **output proposed edits and stop until user confirms** (unless user already approved a listed plan in-thread).  
+4. Audit target vs contract.  
+5. Apply prose within mode + scope lock.  
 6. Report structural or compliance-driven edits.

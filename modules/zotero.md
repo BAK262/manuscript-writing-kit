@@ -1,26 +1,20 @@
 # Zotero MCP citation
 
-Query the local Zotero library via MCP for manuscript citations—search, metadata/abstracts, BibTeX export. Used as the **Zotero pool** in [citation.md](citation.md).
+Zotero **pool** for [citation.md](citation.md). Discover tools from the live MCP schema; do not assume fixed names if the server differs.
 
 ## Prerequisites
 
-1. **Zotero 7+** running on the same machine as Cursor.
-2. **Local API enabled**: Zotero → Settings → Advanced → allow other apps on this computer (`http://localhost:23119/api/`).
-3. **MCP server `zotero`** configured in Cursor (below).
+1. Zotero 7+ running.  
+2. Local API enabled (`http://localhost:23119/api/`).  
+3. Cursor MCP server `zotero` configured.
 
 ## Setup
-
-### Install (once per Python env)
 
 ```powershell
 pip install zotero-mcp-lite
 ```
 
-Entry point: `zotero-mcp serve` ([zotero-mcp-lite](https://pypi.org/project/zotero-mcp-lite/) on PyPI).
-
-### Cursor MCP config
-
-Global: `%USERPROFILE%\.cursor\mcp.json`. Optional project: `.cursor/mcp.json`.
+MCP config (`%USERPROFILE%\.cursor\mcp.json` or project `.cursor/mcp.json`):
 
 ```json
 {
@@ -34,48 +28,33 @@ Global: `%USERPROFILE%\.cursor\mcp.json`. Optional project: `.cursor/mcp.json`.
 }
 ```
 
-Set `command` to the absolute path from `where zotero-mcp` (Windows) or `which zotero-mcp` (Unix). **Restart Cursor** after editing.
+Resolve `command` via `where zotero-mcp` / `which zotero-mcp`. Restart Cursor. Verify with `zotero-mcp setup` and a green MCP panel.
 
-### Verify
+## Capabilities required (map to live tools)
 
-- `zotero-mcp setup` — Zotero found, Local API working.
-- Cursor MCP panel: `zotero` connected.
+| Capability | Typical tools (examples — confirm schema) |
+|------------|-------------------------------------------|
+| Search library | e.g. `zotero_search_items` |
+| Read metadata / abstract | e.g. `zotero_get_item_metadata` |
+| Browse collections | e.g. `zotero_get_collections` / `…_items` |
+| Export BibTeX | e.g. `bibliography_export` prompt or export tool |
+| Optional full text | only if abstract insufficient |
 
-## MCP tools
-
-Read live schemas before calling. Primary tools:
-
-| Tool | Use |
-|------|-----|
-| `zotero_search_items` | Keyword / topic search |
-| `zotero_get_item_metadata` | Authors, year, abstract, DOI, tags |
-| `zotero_get_collections` / `zotero_get_collection_items` | Curated folders |
-| `zotero_search_annotations` | PDF highlights vs claims |
-
-**MCP prompt** `bibliography_export(item_keys)` — APA / IEEE / **BibTeX**; prefer when merging into the project master `.bib`.
-
-Optional: `zotero_get_item_fulltext` when abstract is insufficient.
+**If schema lacks a capability:** skip that action, use `.bib` + network pools, and state the gap in the citation report. **Do not invent tool names.**
 
 ## Workflow integration
 
-Equal weight with master `.bib` and network search in [citation.md](citation.md):
-
-1. Parse sentence or `【cite…】` brief → search terms.
-2. `zotero_search_items` (+ collections if brief names a folder).
-3. `zotero_get_item_metadata` on shortlist → abstract vs claim.
-4. Export BibTeX → temp pack → parent merges with stable keys.
-5. Prefer library hits that satisfy the brief; network fills gaps / refreshes metadata.
+1. Parse sentence / `【cite…】` → search terms.  
+2. Search → metadata shortlist → abstract vs claim.  
+3. Export BibTeX → temp → parent merges with stable keys.  
+4. Prefer library hits that satisfy the brief.
 
 ## Constraints
 
-- Keep Zotero open during MCP calls.
-- Skip `zotero_create_note` on citation-only passes unless the user asks.
-- Rename exported keys to match project conventions before `\cite{key}`.
+- Keep Zotero open during calls.  
+- Skip note-creation on citation-only passes unless asked.  
+- Rename keys to project conventions before `\cite{}`.
 
 ## Troubleshooting
 
-| Symptom | Fix |
-|---------|-----|
-| MCP `zotero` failed | Check `command` path; `pip install -U zotero-mcp-lite` |
-| Local API error | Enable setting; restart Zotero |
-| Empty search | Broaden query; confirm item is in the library |
+MCP fail → path / reinstall · Local API error → enable setting, restart Zotero · Empty search → broaden query.

@@ -16,6 +16,8 @@ Companion modules: `modules/polish.md`, `modules/citation.md`.
 | Venue / template | IEEE Sensors Journal; `\documentclass[journal]{IEEEtran}` |
 | Main manuscript path | `manuscript/main.tex` |
 | Style anchor section | Introduction |
+| Compatible kit version | 1.1.x |
+| Citation parallelism | batched |
 | Kit polish module | `manuscript-writing-kit` → `modules/polish.md` |
 
 ---
@@ -49,6 +51,12 @@ daytime brief nap probe.
 
 Support sleep-stage models that transfer from clinic anchors to lower-burden
 home settings without treating wearable nights as drop-in PSG substitutes.
+
+### Contribution hierarchy (first-order)
+
+1. Paired clinic–home design under one release for transfer evaluation.
+2. Harmonized stage labels and wearable feature dictionary.
+3. Public baselines as reuse entry points for stage prediction.
 
 ### Non-headline guardrails
 

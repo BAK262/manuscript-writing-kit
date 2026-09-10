@@ -14,6 +14,8 @@ Copy this file into your project and fill every `【】` section. Delete instruc
 | Venue / template | 【e.g., IEEE journal, compsoc IEEEtran】 |
 | Main manuscript path | 【e.g., manuscript/main.tex】 |
 | Style anchor section | 【default: Introduction】 |
+| Compatible kit version | 【e.g., 1.1.x】 |
+| Citation parallelism | 【full / batched / inline】 |
 | Contract version / date | 【】 |
 
 **Narrative authority (after freeze):** `\begin{abstract}...\end{abstract}` in 【main path】
@@ -21,6 +23,8 @@ Copy this file into your project and fill every `【】` section. Delete instruc
 ---
 
 ## §1 Core story and claim scope
+
+<!-- Purpose: stop the agent from inventing a new storyline or headline claim. Minimum: design axis + 3 contribution bullets. -->
 
 ### Primary design axis
 
