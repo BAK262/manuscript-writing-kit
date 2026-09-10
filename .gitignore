@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.mcp.json
+mcp.json
+.env
+**/.citation-workflow/
+temp/
