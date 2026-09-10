@@ -150,7 +150,7 @@ ln -s /path/to/your/fork/manuscript-writing-kit ~/.cursor/skills/manuscript-writ
 
 - 核心模块使用可发现路径与配置占位。  
 - `examples/example-contract.md` 为虚构数据集与伦理编号。  
-- 个人 MCP 路径配置留在本机，不要提交到公开仓库。
+- 个人 MCP 安装路径保留在本机；仓库内仅使用占位符示例。
 
 ## 许可
 
